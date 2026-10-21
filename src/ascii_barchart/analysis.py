@@ -1,19 +1,14 @@
-from collections import defaultdict
+def average_value1_by_type(rows):
+    sums = {}
+    counts = {}
 
+    for point_type, value1, _value2 in rows:
+        sums[point_type] = sums.get(point_type, 0.0) + value1
+        counts[point_type] = counts.get(point_type, 0) + 1
 
-def average_value1_by_type(rows: list[dict]) -> dict:
-    """Berechnet für jeden 'type' das arithmetische Mittel von 'value1'."""
-    type_sums = defaultdict(float)
-    type_counts = defaultdict(int)
+    result = []
+    for point_type in sorted(sums):
+        average = sums[point_type] / counts[point_type]
+        result.append((point_type, average))
 
-    for row in rows:
-        t = row["type"]
-        val = row["value1"]
-        type_sums[t] += val
-        type_counts[t] += 1
-
-    averages = {}
-    for t in type_sums:
-        averages[t] = type_sums[t] / type_counts[t]
-
-    return averages
+    return result
