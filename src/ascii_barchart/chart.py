@@ -19,6 +19,10 @@ def render_bar_chart(values, width=40):
     if not values:
         return
 
+    # Falls ein Dictionary übergeben wird, in Key-Value-Paare umwandeln[cite: 1, 2]
+    if isinstance(values, dict):
+        values = values.items()
+
     maximum = max(val for _, val in values)
 
     for label, value in values:
