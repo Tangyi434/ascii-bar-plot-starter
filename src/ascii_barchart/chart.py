@@ -1,6 +1,8 @@
 from rich.console import Console
 from rich.text import Text
 
+console = Console()
+
 def scale_bar(value, maximum, width=40):
     if maximum <= 0:
         return 0
@@ -13,7 +15,6 @@ STYLES = {
     "D": "bold yellow",
 }
 
-console = Console()
 def render_bar_chart(values, width=40):
     if not values:
         return
